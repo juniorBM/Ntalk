@@ -1,6 +1,10 @@
 var express = require('express'),
     load = require('express-load'),
     cookieParser = require('cookie-parser'),
+    session = require('express-session'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    error = require('./middleware/erros'),
     app = express();
 
 
@@ -11,6 +15,11 @@ app.use(express.static(__dirname + '/public'));
 app.use(cookieParser('ntalk'));
 app.use(session());
 app.use(bodyParser());
+app.use(methodOverride());
+
+// app.use(error.notFound);
+// app.use(error.serverError);
+// app.use(app.route);
 
 
 load('models')
